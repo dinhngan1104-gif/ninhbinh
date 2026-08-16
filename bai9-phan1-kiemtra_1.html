@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài kiểm tra 5 kỹ năng — Bài 9 Phần 1: Mua quần áo · Integrated Chinese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C0392B; --red-dark:#8F2A1E; --red-soft:#E8CFC9;
+  --navy:#1A1A2E; --navy-soft:#33334C;
+  --cream:#FBF7F0; --cream-deep:#F3ECDF;
+  --gold:#E67E22; --ink:#241C18; --paper:#FFFDF9; --line:#E7DCC9;
+  --green:#2E9E5B; --green-bg:#DCF3E4;
+  --display:'Be Vietnam Pro',sans-serif; --hanzi:'Noto Serif SC',serif; --body:'Be Vietnam Pro',sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--body); background:var(--cream); color:var(--ink); line-height:1.55; -webkit-font-smoothing:antialiased; padding-bottom:70px;}
+.wrap{max-width:900px; margin:0 auto; padding:0 20px;}
+h1,h2,h3,h4{font-family:var(--display); color:var(--navy);}
+button{font-family:inherit; cursor:pointer;}
+::selection{background:var(--gold); color:#fff;}
+
+/* ===== HEADER ===== */
+header.top{background:var(--navy); color:#fff; padding:22px 0 0;}
+header.top .wrap{display:flex; flex-direction:column; gap:14px;}
+.top-title{display:flex; align-items:center; gap:12px;}
+.top-title .tzg{width:40px; height:40px; border:2px solid var(--gold); border-radius:9px; display:flex; align-items:center; justify-content:center; flex:none;}
+.top-title .tzg span{font-family:var(--hanzi); font-weight:700; color:var(--gold); font-size:1.1rem;}
+.top-title h1{color:#fff; font-size:1.15rem; font-weight:800; letter-spacing:-.01em;}
+.top-title small{display:block; color:#b9b9cf; font-size:.72rem; font-weight:500; margin-top:2px;}
+
+.tabbar{display:flex; gap:4px; overflow-x:auto; padding-top:6px;}
+.tabbtn{
+  flex:none; padding:12px 16px; background:none; border:none; color:#a9a9c2; font-weight:700; font-size:.86rem;
+  border-bottom:3px solid transparent; white-space:nowrap;
+}
+.tabbtn.active{color:#fff; border-color:var(--gold);}
+.tabbtn:disabled{opacity:.35; cursor:not-allowed;}
+
+/* ===== TIMER ===== */
+.timer{
+  position:fixed; bottom:16px; right:16px; background:var(--navy); color:#fff; font-family:var(--display);
+  font-weight:800; font-size:.86rem; padding:10px 16px; border-radius:99px; box-shadow:0 8px 20px -6px rgba(0,0,0,.4); z-index:50;
+}
+
+/* ===== SECTIONS ===== */
+.page{display:none; padding:30px 0 60px;}
+.page.active{display:block;}
+.sec-head{margin-bottom:24px;}
+.sec-head h2{font-size:1.5rem; font-weight:900; letter-spacing:-.01em; display:flex; align-items:center; gap:10px;}
+.sec-head p{color:#6b6459; font-size:.92rem; margin-top:6px;}
+
+/* ===== INTRO / BẮT ĐẦU ===== */
+.card{background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:26px 24px; margin-bottom:20px;}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:8px;}
+.field label{display:block; font-size:.78rem; font-weight:700; color:var(--navy-soft); margin-bottom:6px;}
+.field input{width:100%; padding:12px 14px; border-radius:10px; border:1.6px solid var(--line); font-size:.95rem; font-family:inherit; background:var(--cream);}
+.field input:focus{outline:2px solid var(--gold); border-color:var(--gold);}
+
+table.score-table{width:100%; border-collapse:collapse; font-size:.84rem; margin-top:8px;}
+table.score-table th, table.score-table td{padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+table.score-table th{color:var(--navy-soft); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em;}
+table.score-table td b{color:var(--red-dark);}
+.rank-table td:first-child{font-weight:800; color:var(--navy); white-space:nowrap;}
+
+.notice{background:var(--red-soft); border:1px solid var(--red); border-radius:12px; padding:14px 16px; font-size:.84rem; color:var(--red-dark); font-weight:600; margin-bottom:20px;}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:99px; font-weight:700; font-size:.9rem; border:none;}
+.btn-primary{background:var(--red); color:#fff; box-shadow:0 4px 0 var(--red-dark);}
+.btn-ghost{background:transparent; color:var(--navy); border:1.6px solid var(--line);}
+.btn-lg{padding:16px 32px; font-size:1rem;}
+.btn:disabled{opacity:.5;}
+
+/* ===== QUESTION BLOCKS ===== */
+.qblock{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:20px 22px; margin-bottom:14px;}
+.qnum{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-size:.76rem; font-weight:800; margin-right:8px;}
+.qtext{font-weight:700; color:var(--navy); font-size:.94rem; display:inline;}
+.qhz{font-family:var(--hanzi); font-size:1.2rem; color:var(--navy); font-weight:600;}
+.subhead{font-family:var(--display); font-weight:800; color:var(--navy); font-size:1rem; margin:26px 0 14px; padding-top:18px; border-top:1px dashed var(--line);}
+.subhead:first-child{border-top:none; padding-top:0; margin-top:0;}
+.subhead .pts{font-weight:600; color:var(--red); font-size:.78rem; margin-left:8px;}
+.hint{font-size:.8rem; color:#8a8378; margin-bottom:14px;}
+
+.audio-btn{
+  display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:#fff; border:none; border-radius:99px;
+  padding:9px 18px; font-weight:700; font-size:.82rem;
+}
+.audio-btn .cnt{background:rgba(255,255,255,.2); border-radius:99px; padding:1px 8px; font-size:.7rem;}
+.audio-btn:disabled{opacity:.4;}
+
+/* True/False */
+.tf-row{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;}
+.tf-choices{display:flex; gap:8px;}
+.tf-btn{padding:9px 18px; border-radius:10px; border:1.6px solid var(--line); background:var(--cream); font-weight:700; font-size:.82rem; color:var(--navy);}
+.tf-btn.sel-true.active{background:var(--green-bg); border-color:var(--green); color:#1c6b3c;}
+.tf-btn.sel-false.active{background:var(--red-soft); border-color:var(--red); color:var(--red-dark);}
+
+/* MCQ */
+.opt-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;}
+.opt-btn{padding:11px 14px; border-radius:10px; border:1.6px solid var(--line); background:var(--cream); font-weight:600; font-size:.86rem; text-align:left; color:var(--navy);}
+.opt-btn.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+
+/* Fill blank passage */
+.passage-box{font-size:1.05rem; line-height:2.1; font-family:var(--hanzi); color:var(--navy);}
+.blank-input{
+  display:inline-block; width:70px; padding:3px 6px; margin:0 3px; border:none; border-bottom:2px solid var(--red);
+  background:var(--cream-deep); font-family:var(--body); font-size:.85rem; text-align:center; border-radius:4px 4px 0 0;
+}
+
+/* text/typing input */
+.text-input{width:100%; padding:12px 14px; border-radius:10px; border:1.6px solid var(--line); font-size:.95rem; font-family:inherit; background:var(--cream); margin-top:10px;}
+textarea.text-input{resize:vertical; min-height:70px;}
+
+/* Speaking */
+.mic-row{display:flex; align-items:center; gap:14px; margin-top:12px; flex-wrap:wrap;}
+.mic-btn{width:52px; height:52px; border-radius:50%; border:none; background:var(--red); color:#fff; font-size:1.3rem; flex:none; display:flex; align-items:center; justify-content:center;}
+.mic-btn.listening{animation:pulse 1s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.45);}70%{box-shadow:0 0 0 16px rgba(192,57,43,0);}100%{box-shadow:0 0 0 0 rgba(192,57,43,0);}}
+.transcript-box{flex:1; min-width:180px; background:var(--cream-deep); border-radius:10px; padding:10px 14px; font-size:.86rem; color:var(--navy-soft); min-height:44px;}
+
+/* Word order tiles */
+.tiles-pool{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+.tile{
+  font-family:var(--hanzi); background:var(--navy); color:#fff; padding:9px 14px; border-radius:10px; border:none; font-size:1.02rem; font-weight:600;
+}
+.tile:disabled{opacity:.3;}
+.answer-row{
+  display:flex; flex-wrap:wrap; gap:8px; min-height:48px; border:1.6px dashed var(--line); border-radius:10px; padding:10px; margin-top:10px; background:var(--cream);
+}
+.answer-row .tile{background:var(--gold);}
+
+/* Reading passage */
+.rpassage{background:var(--cream-deep); border-radius:14px; padding:20px 22px; margin-bottom:16px; font-family:var(--hanzi); font-size:1.08rem; line-height:1.9; color:var(--navy);}
+
+/* Feedback */
+.fb{margin-top:10px; font-weight:700; font-size:.84rem;}
+.fb.ok{color:#1c6b3c;} .fb.bad{color:var(--red-dark);}
+
+/* Progress dock */
+.section-progress{font-size:.78rem; color:#8a8378; font-weight:700; margin-bottom:16px;}
+
+/* Summary */
+.score-hero{text-align:center; padding:30px 0;}
+.score-hero .num{font-family:var(--display); font-size:3.4rem; font-weight:900; color:var(--red);}
+.score-hero .rank{font-size:1.1rem; font-weight:800; color:var(--navy); margin-top:6px;}
+.breakdown{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:20px 0;}
+.breakdown div{background:var(--cream-deep); border-radius:12px; padding:14px; text-align:center;}
+.breakdown div b{display:block; font-family:var(--display); font-size:1.3rem; color:var(--navy);}
+.breakdown div span{font-size:.72rem; color:#8a8378;}
+
+@media (max-width:640px){
+  .field-row{grid-template-columns:1fr;}
+  .opt-grid{grid-template-columns:1fr;}
+  .breakdown{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-title">
+      <div class="tzg"><span>购</span></div>
+      <div>
+        <h1>📝 Bài kiểm tra 5 kỹ năng — Bài 9 Phần 1</h1>
+        <small>Integrated Chinese, Level 1 Part 1 · 第九课 买东西 (Dialogue I: Shopping for Clothes) · Nghe – Nói – Đọc – Viết – Dịch</small>
+      </div>
+    </div>
+    <div class="tabbar" id="tabbar">
+      <button class="tabbtn active" data-page="intro" onclick="goPage('intro')">📋 Bắt đầu</button>
+      <button class="tabbtn" data-page="listen" onclick="goPage('listen')" disabled>🎧 Nghe</button>
+      <button class="tabbtn" data-page="speak" onclick="goPage('speak')" disabled>🎤 Nói</button>
+      <button class="tabbtn" data-page="read" onclick="goPage('read')" disabled>📖 Đọc</button>
+      <button class="tabbtn" data-page="write" onclick="goPage('write')" disabled>✍️ Viết</button>
+      <button class="tabbtn" data-page="translate" onclick="goPage('translate')" disabled>🔄 Dịch</button>
+      <button class="tabbtn" data-page="submit" onclick="goPage('submit')" disabled>📊 Nộp bài</button>
+    </div>
+  </div>
+</header>
+
+<div class="timer" id="timer">⏱ --:--</div>
+
+<!-- ============ BẮT ĐẦU ============ -->
+<main class="page active" id="page-intro">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Thông tin thí sinh</h2>
+      <p>Bài kiểm tra <b>Bài 9 Phần 1 — 买东西 (Mua quần áo)</b>, trích từ giáo trình <b>Integrated Chinese, Level 1 Part 1</b> (Dialogue I: Shopping for Clothes). Có kết cấu ngữ pháp trọng tâm: <b>要 (muốn), 的-structure, 多 dùng để hỏi, 如果…的话…</b>. Hãy dùng <b>Google Chrome</b>, bật loa và cho phép micro.</p>
+    </div>
+
+    <div class="card">
+      <div class="field-row">
+        <div class="field"><label>Họ và tên</label><input type="text" id="stu-name" placeholder="Nguyễn Văn A"></div>
+        <div class="field"><label>Lớp / Mã học viên</label><input type="text" id="stu-class" placeholder="VD: HSK1-A2"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="score-table">
+        <tr><th>Phần thi</th><th>Cơ cấu điểm</th><th>Chấm</th></tr>
+        <tr><td>🎧 Nghe — 20đ (20 câu)</td><td>Đúng/Sai 5×1đ · Chọn đáp án 8×1đ · Điền từ 7×1đ</td><td>Tự động</td></tr>
+        <tr><td>🎤 Nói — 20đ (17 mục)</td><td>Nhắc lại 10×0,5đ · Trả lời 6×0,5đ · Trình bày 12đ</td><td>Giáo viên</td></tr>
+        <tr><td>📖 Đọc — 20đ (10 câu)</td><td>2 bài đọc, 10 câu × 2đ</td><td>Tự động</td></tr>
+        <tr><td>✍️ Viết — 20đ (20 câu)</td><td>Sắp xếp 6×1đ · Hoàn thành 6×1đ · Viết từ 8×1đ</td><td>Tự động</td></tr>
+        <tr><td>🔄 Dịch — 20đ (20 câu)</td><td>🎤 Phiên dịch (nói): 5 xuôi + 5 ngược ×1đ · ⌨️ Biên dịch (viết): 5 xuôi + 5 ngược ×1đ</td><td>Giáo viên</td></tr>
+      </table>
+      <p style="font-size:.84rem;color:#6b6459;margin-top:14px;">Tổng <b>100 điểm</b>: máy chấm ngay 60đ (Nghe 20 + Đọc 20 + Viết 20), giáo viên chấm 40đ (Nói 20 + Dịch 20).</p>
+    </div>
+
+    <div class="card">
+      <table class="score-table rank-table">
+        <tr><th>Tổng điểm</th><th>Xếp loại</th></tr>
+        <tr><td>90 – 100</td><td>🏆 Xuất sắc</td></tr>
+        <tr><td>80 – 89</td><td>🥇 Hoàn thành tốt</td></tr>
+        <tr><td>Trên 50 – 79</td><td>✅ Hoàn thành</td></tr>
+        <tr><td>50 trở xuống</td><td>Ôn tập lại và kiểm tra lại</td></tr>
+      </table>
+    </div>
+
+    <div class="notice">⚠️ Mỗi bài nghe chỉ được phát tối đa <b>2 lần</b>. Đồng hồ từng phần bắt đầu chạy khi bạn mở phần đó (hết giờ máy nhắc, không khoá bài).</div>
+
+    <button class="btn btn-primary btn-lg" onclick="startExam()">🚀 Bắt đầu làm bài</button>
+  </div>
+</main>
+
+<!-- ============ NGHE ============ -->
+<main class="page" id="page-listen">
+  <div class="wrap">
+    <div class="sec-head"><h2>🎧 PHẦN NGHE <span style="font-size:.8rem;color:#8a8378;font-weight:600;">— tự chấm</span></h2>
+    <p>Bấm ▶ để nghe. Mỗi câu chỉ nghe được tối đa 2 lần.</p></div>
+    <div id="listen-body"></div>
+  </div>
+</main>
+
+<!-- ============ NÓI ============ -->
+<main class="page" id="page-speak">
+  <div class="wrap">
+    <div class="sec-head"><h2>🎤 PHẦN NÓI <span style="font-size:.8rem;color:#8a8378;font-weight:600;">— giáo viên chấm</span></h2>
+    <p>Bấm 🎙️ để ghi âm — máy nhận dạng lời nói thành chữ và lưu vào bài làm. Nói to, rõ. (Cần Chrome + cho phép micro.)</p></div>
+    <div id="speak-body"></div>
+  </div>
+</main>
+
+<!-- ============ ĐỌC ============ -->
+<main class="page" id="page-read">
+  <div class="wrap">
+    <div class="sec-head"><h2>📖 PHẦN ĐỌC <span style="font-size:.8rem;color:#8a8378;font-weight:600;">— tự chấm</span></h2>
+    <p>2 bài đọc, 10 câu hỏi, mỗi câu 2 điểm. Từ vựng và ngữ pháp Bài 9 Phần 1 (Integrated Chinese).</p></div>
+    <div id="read-body"></div>
+  </div>
+</main>
+
+<!-- ============ VIẾT ============ -->
+<main class="page" id="page-write">
+  <div class="wrap">
+    <div class="sec-head"><h2>✍️ PHẦN VIẾT <span style="font-size:.8rem;color:#8a8378;font-weight:600;">— tự chấm</span></h2></div>
+    <div id="write-body"></div>
+  </div>
+</main>
+
+<!-- ============ DỊCH ============ -->
+<main class="page" id="page-translate">
+  <div class="wrap">
+    <div class="sec-head"><h2>🔄 PHẦN DỊCH <span style="font-size:.8rem;color:#8a8378;font-weight:600;">— giáo viên chấm</span></h2>
+    <p>Gồm 2 phần: <b>🎤 Phiên dịch</b> — nghe rồi NÓI câu dịch (ghi lại lời dịch vào bài làm) và <b>⌨️ Biên dịch</b> — nhìn rồi GÕ câu dịch. Đáp án tham khảo có trong file kết quả gửi giáo viên.</p></div>
+    <div id="translate-body"></div>
+  </div>
+</main>
+
+<!-- ============ NỘP BÀI ============ -->
+<main class="page" id="page-submit">
+  <div class="wrap">
+    <div class="sec-head"><h2>📊 Nộp bài</h2><p>Kiểm tra lại bài làm trước khi nộp. Sau khi nộp, máy chấm ngay 60đ trắc nghiệm; phần Nói và Dịch lưu vào file kết quả để giáo viên chấm 40đ còn lại.</p></div>
+    <div id="submit-body"></div>
+  </div>
+</main>
+
+<script>
+/* ============================================================
+   DỮ LIỆU ĐỀ THI — Bài 9 Phần 1: 买东西 (Mua quần áo)
+   Integrated Chinese, Level 1 Part 1 — Dialogue I: Shopping for Clothes
+   ============================================================ */
+
+/* ---------- NGHE ---------- */
+
+/* Phần 1: Đúng/Sai — 5 câu x 1đ */
+const LISTEN_TF = [
+  {hz:'我想买一件衬衫。', statement:'Người nói muốn mua một chiếc quần.', correct:false},
+  {hz:'我喜欢穿红的。', statement:'Người nói thích màu đỏ.', correct:true},
+  {hz:'不要太贵的，也不要太便宜的。', statement:'Người nói muốn mua đồ vừa phải, không quá đắt cũng không quá rẻ.', correct:true},
+  {hz:'这条裤子怎么样？', statement:'Đây là câu hỏi về giá tiền của chiếc quần.', correct:false},
+  {hz:'一共是五十四块四毛九分。', statement:'Tổng số tiền phải trả là 54 đồng 4 hào 9 xu.', correct:true},
+];
+
+/* Phần 2: Nghe và chọn đáp án đúng — 8 câu x 1đ */
+const LISTEN_MCQ = [
+  {hz:'商店', options:['Cửa hàng','Tiền','Quần áo','Màu sắc'], answer:0},
+  {hz:'便宜', options:['Đắt','Vừa','Mới','Rẻ'], answer:3},
+  {hz:'颜色', options:['Kích cỡ','Giá tiền','Màu sắc','Kiểu dáng'], answer:2},
+  {hz:'试', options:['Mua','Mặc','Thử','Trả tiền'], answer:2},
+  {hz:'合适', options:['Quá to','Quá đắt','Quá rẻ','Vừa vặn, hợp'], answer:3},
+  {hz:'一共', options:['Một nửa','Mỗi cái','Còn lại','Tổng cộng'], answer:3},
+  {hz:'找钱', options:['Trả tiền','Vay tiền','Đổi tiền','Thối tiền lại'], answer:3},
+  {hz:'号', options:['Màu','Chất liệu','Kiểu','Cỡ, số'], answer:3},
+];
+
+/* Phần 3: Nghe và điền từ — 1 đoạn x 7 từ x 1đ */
+const LISTEN_FILL = [
+  {
+    title:'Đoạn hội thoại rút gọn',
+    fullText:'小姐，您要买什么衣服？我想买一件衬衫。您喜欢什么颜色的？我喜欢穿红的，我还想买一条裤子。多大的？中号的，不要太贵的，也不要太便宜的。一共多少钱？',
+    parts:['小姐，您要买什么','？我想买一件','。您喜欢什么','的？我喜欢穿红的，我还想买一条','。多大的？中号的，不要太','的，也不要太','的。一共','钱？'],
+    blanks:['衣服','衬衫','颜色','裤子','贵','便宜','多少'],
+  },
+];
+
+/* ---------- NÓI ---------- */
+
+/* Phần 1: Nghe và nhắc lại — 10 câu x 0,5đ */
+const SPEAK_REPEAT = [
+  '您要买什么衣服？',
+  '我想买一件衬衫。',
+  '黄的还是红的？',
+  '我喜欢穿红的。',
+  '大号的、中号的、还是小号的？',
+  '不要太贵的，也不要太便宜的。',
+  '这条裤子怎么样？',
+  '您试一下。',
+  '这件衬衫呢？',
+  '一共多少钱？',
+];
+
+/* Phần 2: Nghe câu hỏi và trả lời — 6 câu x 0,5đ (đúng 6 câu hỏi có trong hội thoại) */
+const SPEAK_ANSWER = [
+  '您要买什么衣服？',
+  '您喜欢什么颜色的，黄的还是红的？',
+  '多大的？大号的、中号的、还是小号的？',
+  '这条裤子怎么样？',
+  '这件衬衫呢？',
+  '一共多少钱？',
+];
+
+/* Phần 3: Trình bày — chọn 1 chủ đề, nói khoảng 1 phút */
+const SPEAK_TOPICS = [
+  '假设你在商店买衣服，跟售货员对话：你想买什么、喜欢什么颜色、要多大的号。（Giả sử bạn đang mua quần áo ở cửa hàng — đóng vai khách hàng nói chuyện với nhân viên bán hàng: bạn muốn mua gì, thích màu gì, cỡ nào. Nên dùng 要 và 如果…的话…）',
+  '介绍你最喜欢的一件衣服：颜色、大小、多少钱。（Miêu tả bộ quần áo yêu thích của bạn: màu gì, cỡ gì, giá bao nhiêu）',
+];
+
+/* ---------- ĐỌC ---------- */
+
+const READ_PASSAGES = [
+  {
+    text:'（李友在一个商店买东西，售货员问她……）小姐，您要买什么衣服？我想买一件衬衫。您喜欢什么颜色的，黄的还是红的？我喜欢穿红的。我还想买一条裤子。多大的？中号的。不要太贵的，也不要太便宜的。这条裤子怎么样？颜色很好，如果长短合适的话，我就买。这件衬衫呢？也不错。一共多少钱？衬衫二十一块五，裤子三十二块九毛九，一共是五十四块四毛九分。好，这是一百块钱。找您四十五块五毛一。',
+    questions:[
+      {q:'李友想买什么？', options:['只买衬衫','只买裤子','衬衫和裤子','鞋子'], answer:2},
+      {q:'李友喜欢什么颜色？', options:['黄色','红色','黑色','白色'], answer:1},
+      {q:'李友要哪个号的裤子？', options:['大号','中号','小号','没说'], answer:1},
+      {q:'一共多少钱？', options:['二十一块五','三十二块九毛九','五十四块四毛九','一百块'], answer:2},
+      {q:'李友给了售货员多少钱？', options:['五十块','一百块','四十五块','五十四块'], answer:1},
+    ],
+  },
+  {
+    text:'李友在商店买东西。她想买一件红衬衫和一条裤子。衬衫二十一块五，裤子三十二块九毛九。她不要太贵的衣服，也不要太便宜的。她试了裤子，很合适，颜色也很好，所以她就买了。她一共给了售货员一百块钱，售货员找给她四十五块五毛一。',
+    questions:[
+      {q:'李友在哪儿买东西？', options:['商店','学校','家里','饭店'], answer:0},
+      {q:'裤子怎么样？', options:['太贵','不合适','很合适，颜色好','太便宜'], answer:2},
+      {q:'李友给了多少钱？', options:['四十五块','一百块','五十四块','三十二块'], answer:1},
+      {q:'售货员找给她多少钱？', options:['四十五块五毛一','五十四块四毛九','二十一块五','三十二块九毛九'], answer:0},
+      {q:'李友为什么买这条裤子？', options:['因为便宜','因为长短合适，颜色好','因为是新的','因为售货员喜欢'], answer:1},
+    ],
+  },
+];
+
+/* ---------- VIẾT ---------- */
+
+/* Bài 1: Sắp xếp từ thành câu đúng — 6 câu x 1đ */
+const WRITE_ORDER = [
+  {tiles:['您','要','买','什么','衣服','？'], correct:['您','要','买','什么','衣服','？']},
+  {tiles:['我','想','买','一件','衬衫','。'], correct:['我','想','买','一件','衬衫','。']},
+  {tiles:['我','喜欢','穿','红的','。'], correct:['我','喜欢','穿','红的','。']},
+  {tiles:['这条','裤子','怎么样','？'], correct:['这条','裤子','怎么样','？']},
+  {tiles:['一共','多少','钱','？'], correct:['一共','多少','钱','？']},
+  {tiles:['我','还','想','买','一条','裤子','。'], correct:['我','还','想','买','一条','裤子','。']},
+];
+
+/* Bài 2: Hoàn thành câu — ngân hàng từ, mỗi từ dùng 1 lần — 6 câu x 1đ */
+const WRITE_FILL_BANK = ['要','的','多','如果','还是','就'];
+const WRITE_FILL = [
+  {before:'您', after:'买什么衣服？', answer:'要'},
+  {before:'黄', after:'还是红的？', answer:'的'},
+  {before:'', after:'大的？', answer:'多'},
+  {before:'', after:'长短合适的话，我就买。', answer:'如果'},
+  {before:'黄的', after:'红的？', answer:'还是'},
+  {before:'如果长短合适的话，我', after:'买。', answer:'就'},
+];
+
+/* Bài 3: Viết từ vào chỗ trống — 8 từ x 1đ */
+const WRITE_WORDS = [
+  {vi:'cửa hàng', answer:'商店', pinyin:'shangdian'},
+  {vi:'áo sơ mi', answer:'衬衫', pinyin:'chenshan'},
+  {vi:'quần', answer:'裤子', pinyin:'kuzi'},
+  {vi:'màu sắc', answer:'颜色', pinyin:'yanse'},
+  {vi:'rẻ', answer:'便宜', pinyin:'pianyi'},
+  {vi:'thử', answer:'试', pinyin:'shi'},
+  {vi:'tổng cộng', answer:'一共', pinyin:'yigong'},
+  {vi:'thối tiền', answer:'找钱', pinyin:'zhaoqian'},
+];
+
+/* ---------- DỊCH ---------- */
+
+/* A. Phiên dịch xuôi (nói): nghe Trung → nói Việt — 5 câu x 1đ, chỉ audio */
+const TRANS_A = [
+  {hz:'您要买什么衣服？', vi:'Chị muốn mua quần áo gì?'},
+  {hz:'我想买一件衬衫。', vi:'Tôi muốn mua một chiếc áo sơ mi.'},
+  {hz:'不要太贵的，也不要太便宜的。', vi:'Không muốn đồ quá đắt, cũng không muốn quá rẻ.'},
+  {hz:'这条裤子怎么样？', vi:'Chiếc quần này thế nào?'},
+  {hz:'一共多少钱？', vi:'Tổng cộng bao nhiêu tiền?'},
+];
+
+/* B. Phiên dịch ngược (nói): nghe Việt → nói Trung — 5 câu x 1đ, chỉ audio */
+const TRANS_B = [
+  {vi:'Tôi muốn mua một cái áo sơ mi màu đỏ.', hz:'我想买一件红的衬衫。'},
+  {vi:'Cỡ vừa, không cần thử.', hz:'中号的，不用试。'},
+  {vi:'Cái này giá bao nhiêu tiền?', hz:'这个多少钱？'},
+  {vi:'Đây là một trăm đồng.', hz:'这是一百块钱。'},
+  {vi:'Cảm ơn chị!', hz:'谢谢！'},
+];
+
+/* C. Biên dịch (gõ): Việt → Trung — 5 câu x 1đ */
+const TRANS_C = [
+  {vi:'Tôi muốn mua một chiếc quần.', hzRef:'我想买一条裤子。'},
+  {vi:'Chị thích màu vàng hay màu đỏ?', hzRef:'你喜欢黄的还是红的？'},
+  {vi:'Nếu vừa vặn thì tôi sẽ mua.', hzRef:'如果合适的话，我就买。'},
+  {vi:'Áo sơ mi hai mươi mốt đồng năm hào.', hzRef:'衬衫二十一块五。'},
+  {vi:'Thối lại chị bốn mươi lăm đồng năm hào một xu.', hzRef:'找您四十五块五毛一。'},
+];
+
+/* D. Biên dịch (gõ): Trung → Việt — 5 câu x 1đ */
+const TRANS_D = [
+  {hz:'您喜欢什么颜色的？', viRef:'Chị thích màu gì?'},
+  {hz:'大号的、中号的、还是小号的？', viRef:'Cỡ lớn, cỡ vừa hay cỡ nhỏ?'},
+  {hz:'颜色很好。', viRef:'Màu đẹp lắm.'},
+  {hz:'也不错。', viRef:'Cũng không tệ.'},
+  {hz:'好，这是一百块钱。', viRef:'Được, đây là một trăm đồng.'},
+];
+
+</script>
+<script>
+/* ============================================================
+   APP LOGIC — Bài kiểm tra tổng hợp Bài 1–10
+   ============================================================ */
+
+/* ---------- STATE ---------- */
+const ANSWERS = {
+  listenTF: Array(LISTEN_TF.length).fill(null),
+  listenMCQ: Array(LISTEN_MCQ.length).fill(null),
+  listenFill: LISTEN_FILL.map(p => Array(p.blanks.length).fill('')),
+  speakRepeat: Array(SPEAK_REPEAT.length).fill(''),
+  speakAnswer: Array(SPEAK_ANSWER.length).fill(''),
+  speakTopicChoice: -1,
+  speakTopicTranscript: '',
+  readMCQ: [],
+  writeOrder: WRITE_ORDER.map(() => []),
+  writeFill: Array(WRITE_FILL.length).fill(''),
+  writeWords: Array(WRITE_WORDS.length).fill(''),
+  transA: Array(TRANS_A.length).fill(''),
+  transB: Array(TRANS_B.length).fill(''),
+  transC: Array(TRANS_C.length).fill(''),
+  transD: Array(TRANS_D.length).fill(''),
+};
+READ_PASSAGES.forEach(p => ANSWERS.readMCQ.push(...Array(p.questions.length).fill(null)));
+
+const PLAY_COUNTS = {}; // key -> count used
+
+const SECTION_TIME = {}; // key -> start timestamp
+let currentPage = 'intro';
+let timerInterval = null;
+
+/* ---------- HELPERS ---------- */
+function norm(s){
+  return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z\u4e00-\u9fff]/g,'');
+}
+function escJs(s){ return String(s).replace(/'/g, "\\'"); }
+
+function speak(text, key){
+  if(key){
+    PLAY_COUNTS[key] = (PLAY_COUNTS[key]||0) + 1;
+  }
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const clean = text.replace(/[，。！？、（）【】…\/]/g,' ');
+  const u = new SpeechSynthesisUtterance(clean);
+  u.lang = 'zh-CN'; u.rate = 0.82;
+  const voices = window.speechSynthesis.getVoices();
+  const zh = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('zh'));
+  if(zh) u.voice = zh;
+  window.speechSynthesis.speak(u);
+}
+function speakVi(text, key){
+  if(key){ PLAY_COUNTS[key] = (PLAY_COUNTS[key]||0) + 1; }
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'vi-VN'; u.rate = 0.95;
+  const voices = window.speechSynthesis.getVoices();
+  const vi = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('vi'));
+  if(vi) u.voice = vi;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = ()=>{}; }
+
+function playLimited(btn, text, key, vi){
+  const used = PLAY_COUNTS[key]||0;
+  if(used >= 2){ return; }
+  if(vi) speakVi(text, key); else speak(text, key);
+  const left = 2 - (PLAY_COUNTS[key]||0);
+  btn.querySelector('.cnt').textContent = left+'/2';
+  if(left<=0) btn.disabled = true;
+}
+
+/* ---------- NAVIGATION / TIMER ---------- */
+function goPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.tabbtn').forEach(b=>b.classList.toggle('active', b.dataset.page===page));
+  currentPage = page;
+  if(!SECTION_TIME[page]) SECTION_TIME[page] = Date.now();
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function startExam(){
+  const name = document.getElementById('stu-name').value.trim();
+  if(!name){ alert('Vui lòng nhập họ tên trước khi bắt đầu.'); return; }
+  document.querySelectorAll('.tabbtn').forEach(b=>b.disabled=false);
+  renderListen(); renderSpeak(); renderRead(); renderWrite(); renderTranslate(); renderSubmit();
+  goPage('listen');
+  if(!timerInterval){
+    timerInterval = setInterval(()=>{
+      const start = SECTION_TIME[currentPage];
+      if(!start) return;
+      const sec = Math.floor((Date.now()-start)/1000);
+      const mm = String(Math.floor(sec/60)).padStart(2,'0');
+      const ss = String(sec%60).padStart(2,'0');
+      document.getElementById('timer').textContent = '⏱ '+mm+':'+ss;
+    }, 1000);
+  }
+}
+
+/* ============================================================
+   NGHE
+   ============================================================ */
+function renderListen(){
+  const el = document.getElementById('listen-body');
+  let html = '';
+
+  html += `<div class="subhead">Phần 1 · Nghe và chọn Đúng ✓ / Sai ✗ <span class="pts">10 câu × 0,5đ</span></div>
+  <div class="hint">Nghe câu, sau đó xét câu hiển thị đúng hay sai so với nội dung nghe được.</div>`;
+  LISTEN_TF.forEach((it,i)=>{
+    const key = 'tf'+i;
+    html += `<div class="qblock">
+      <div class="tf-row">
+        <div>
+          <span class="qnum">${i+1}</span>
+          <button class="audio-btn" onclick="playLimited(this,'${escJs(it.hz)}','${key}')">▶ Nghe <span class="cnt">2/2</span></button>
+          <div style="margin-top:10px;font-size:.9rem;color:var(--navy-soft);">${it.statement}</div>
+        </div>
+        <div class="tf-choices">
+          <button class="tf-btn sel-true" onclick="setTF(${i},true,this)">✓ Đúng</button>
+          <button class="tf-btn sel-false" onclick="setTF(${i},false,this)">✗ Sai</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Phần 2 · Nghe và chọn câu trả lời chính xác <span class="pts">10 câu × 1đ</span></div>`;
+  LISTEN_MCQ.forEach((it,i)=>{
+    const key = 'mcq'+i;
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <button class="audio-btn" onclick="playLimited(this,'${escJs(it.hz)}','${key}')">▶ Nghe <span class="cnt">2/2</span></button>
+      <div class="opt-grid">
+        ${it.options.map((o,oi)=>`<button class="opt-btn" onclick="setMCQ('listenMCQ',${i},${oi},this)">${o}</button>`).join('')}
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Phần 3 · Nghe và điền từ <span class="pts">2 đoạn × 5 từ × 0,5đ</span></div>
+  <div class="hint">Nghe từng đoạn văn (tối đa 2 lần/đoạn), gõ chữ Hán hoặc pinyin không dấu vào chỗ trống.</div>`;
+  LISTEN_FILL.forEach((p,pi)=>{
+    const key = 'fill'+pi;
+    let passageHtml = p.parts[0];
+    p.blanks.forEach((b,bi)=>{
+      passageHtml += `<input type="text" class="blank-input" oninput="ANSWERS.listenFill[${pi}][${bi}]=this.value">`;
+      passageHtml += p.parts[bi+1];
+    });
+    html += `<div class="qblock">
+      <b>${p.title}</b> &nbsp;
+      <button class="audio-btn" onclick="playLimited(this,'${escJs(p.fullText)}','${key}')">▶ Nghe <span class="cnt">2/2</span></button>
+      <div class="passage-box" style="margin-top:14px;">${passageHtml}</div>
+    </div>`;
+  });
+
+  el.innerHTML = html;
+}
+function setTF(i, val, btn){
+  ANSWERS.listenTF[i] = val;
+  const row = btn.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setMCQ(bank, i, oi, btn){
+  ANSWERS[bank][i] = oi;
+  const grid = btn.parentElement;
+  grid.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ============================================================
+   NÓI
+   ============================================================ */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+function renderSpeak(){
+  const el = document.getElementById('speak-body');
+  let html = '';
+
+  html += `<div class="subhead">Phần 1 · Nghe và nhắc lại <span class="pts">20 câu × 0,25đ</span></div>
+  <div class="hint">Nghe câu mẫu rồi nhắc lại đúng và trôi chảy. Máy hiện % giống câu mẫu để tham khảo.</div>`;
+  SPEAK_REPEAT.forEach((hz,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <button class="audio-btn" onclick="speak('${escJs(hz)}')">▶ Nghe mẫu</button>
+      <span class="qhz" style="margin-left:8px;">${hz}</span>
+      <div class="mic-row">
+        ${SR ? `<button class="mic-btn" onclick="recordRepeat(${i},this)">🎙</button>` : `<span style="font-size:.8rem;color:#8a8378;">Trình duyệt không hỗ trợ ghi âm — hãy tự luyện nói to.</span>`}
+        <div class="transcript-box" id="rep-tx-${i}">Chưa ghi âm</div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Phần 2 · Nghe câu hỏi và trả lời <span class="pts">20 câu × 0,25đ</span></div>
+  <div class="hint">Nghe câu hỏi, trả lời thành câu hoàn chỉnh. Câu trả lời có dùng câu ghép (因为…所以…) sẽ được đánh giá cao hơn.</div>`;
+  SPEAK_ANSWER.forEach((hz,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <button class="audio-btn" onclick="speak('${escJs(hz)}')">▶ Nghe câu hỏi</button>
+      <span class="qhz" style="margin-left:8px;">${hz}</span>
+      <div class="mic-row">
+        ${SR ? `<button class="mic-btn" onclick="recordAnswer(${i},this)">🎙</button>` : `<span style="font-size:.8rem;color:#8a8378;">Trình duyệt không hỗ trợ ghi âm — hãy tự luyện trả lời to.</span>`}
+        <div class="transcript-box" id="ans-tx-${i}">Chưa trả lời</div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Phần 3 · Trình bày <span class="pts">10đ — chọn 1 chủ đề, nói khoảng 1–2 phút</span></div>
+  <div class="hint">Yêu cầu: dùng ít nhất 1 câu ghép 因为…所以… hoặc 但是 / 可是.</div>
+  <div class="qblock">
+    ${SPEAK_TOPICS.map((t,i)=>`<button class="opt-btn" style="display:block;width:100%;margin-bottom:8px;" onclick="setTopic(${i},this)">${i+1}. ${t}</button>`).join('')}
+    <div class="mic-row">
+      ${SR ? `<button class="mic-btn" onclick="recordTopic(this)">🎙</button>` : `<span style="font-size:.8rem;color:#8a8378;">Trình duyệt không hỗ trợ ghi âm.</span>`}
+      <div class="transcript-box" id="topic-tx">Chưa trình bày</div>
+    </div>
+  </div>`;
+
+  el.innerHTML = html;
+}
+
+function setTopic(i, btn){
+  ANSWERS.speakTopicChoice = i;
+  btn.parentElement.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function simpleSimilarity(a,b){
+  a = norm(a); b = norm(b);
+  if(!a || !b) return 0;
+  const la=a.length, lb=b.length;
+  const dp = Array(la+1).fill(null).map(()=>Array(lb+1).fill(0));
+  for(let i=0;i<=la;i++) dp[i][0]=i;
+  for(let j=0;j<=lb;j++) dp[0][j]=j;
+  for(let i=1;i<=la;i++) for(let j=1;j<=lb;j++){
+    dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1] : 1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  }
+  const dist = dp[la][lb];
+  return Math.max(0, Math.round((1 - dist/Math.max(la,lb))*100));
+}
+
+function recordRepeat(i, btn){
+  const rec = new SR(); rec.lang='zh-CN'; rec.interimResults=false;
+  btn.classList.add('listening');
+  rec.onresult = e=>{
+    const said = e.results[0][0].transcript;
+    ANSWERS.speakRepeat[i] = said;
+    const pct = simpleSimilarity(said, SPEAK_REPEAT[i]);
+    document.getElementById('rep-tx-'+i).innerHTML = `"${said}" <b style="color:var(--red);">(~${pct}% giống mẫu)</b>`;
+    btn.classList.remove('listening');
+  };
+  rec.onerror = ()=>{ btn.classList.remove('listening'); };
+  rec.onend = ()=>{ btn.classList.remove('listening'); };
+  rec.start();
+}
+function recordAnswer(i, btn){
+  const rec = new SR(); rec.lang='zh-CN'; rec.interimResults=false;
+  btn.classList.add('listening');
+  rec.onresult = e=>{
+    const said = e.results[0][0].transcript;
+    ANSWERS.speakAnswer[i] = said;
+    document.getElementById('ans-tx-'+i).textContent = '"'+said+'"';
+    btn.classList.remove('listening');
+  };
+  rec.onerror = ()=>{ btn.classList.remove('listening'); };
+  rec.onend = ()=>{ btn.classList.remove('listening'); };
+  rec.start();
+}
+function recordTopic(btn){
+  const rec = new SR(); rec.lang='zh-CN'; rec.interimResults=true; rec.continuous=true;
+  btn.classList.add('listening');
+  let full = '';
+  rec.onresult = e=>{
+    full = '';
+    for(let i=0;i<e.results.length;i++){ full += e.results[i][0].transcript; }
+    ANSWERS.speakTopicTranscript = full;
+    document.getElementById('topic-tx').textContent = '"'+full+'"';
+  };
+  rec.onerror = ()=>{ btn.classList.remove('listening'); };
+  rec.onend = ()=>{ btn.classList.remove('listening'); };
+  rec.start();
+  btn.onclick = ()=>{ rec.stop(); btn.classList.remove('listening'); btn.onclick=()=>recordTopic(btn); };
+}
+
+/* ============================================================
+   ĐỌC
+   ============================================================ */
+function renderRead(){
+  const el = document.getElementById('read-body');
+  let html = '';
+  let qIndex = 0;
+  READ_PASSAGES.forEach((p,pi)=>{
+    html += `<div class="qblock">
+      <b>Bài đọc ${pi+1}</b>
+      <div class="rpassage">${p.text}</div>`;
+    p.questions.forEach((q)=>{
+      const gi = qIndex;
+      html += `<div style="margin-bottom:14px;">
+        <span class="qnum">${gi+1}</span><span class="qtext">${q.q}</span>
+        <div class="opt-grid">
+          ${q.options.map((o,oi)=>`<button class="opt-btn" onclick="setMCQ('readMCQ',${gi},${oi},this)">${o}</button>`).join('')}
+        </div>
+      </div>`;
+      qIndex++;
+    });
+    html += `</div>`;
+  });
+  el.innerHTML = html;
+}
+
+/* ============================================================
+   VIẾT
+   ============================================================ */
+function renderWrite(){
+  const el = document.getElementById('write-body');
+  let html = '';
+
+  html += `<div class="subhead">Bài 1 · Sắp xếp từ thành câu đúng <span class="pts">10 câu × 0,5đ</span></div>
+  <div class="hint">Bấm các thẻ từ theo đúng thứ tự. Bấm thẻ trong khung trả lời để bỏ ra.</div>`;
+  WRITE_ORDER.forEach((it,i)=>{
+    const shuffled = it.tiles.map((t,ti)=>({t,ti})).sort(()=>Math.random()-0.5);
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>Sắp xếp thành câu đúng nghĩa
+      <div class="tiles-pool" id="pool-${i}">
+        ${shuffled.map(o=>`<button class="tile" onclick="pickTile(${i},${o.ti},this)">${o.t}</button>`).join('')}
+      </div>
+      <div class="answer-row" id="ans-${i}"></div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Bài 2 · Hoàn thành câu <span class="pts">10 câu × 0,5đ</span></div>
+  <div class="hint">Chọn từ thích hợp điền vào chỗ trống: <b>${WRITE_FILL_BANK.join(' · ')}</b> (mỗi từ dùng 1 lần).</div>`;
+  WRITE_FILL.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <span class="qhz">${it.before}</span>
+      <select class="text-input" style="display:inline-block;width:100px;margin:0 6px;" onchange="ANSWERS.writeFill[${i}]=this.value">
+        <option value="">—</option>
+        ${WRITE_FILL_BANK.map(w=>`<option value="${w}">${w}</option>`).join('')}
+      </select>
+      <span class="qhz">${it.after}</span>
+    </div>`;
+  });
+
+  html += `<div class="subhead">Bài 3 · Viết từ vào chỗ trống <span class="pts">10 từ × 1đ</span></div>
+  <div class="hint">Dựa vào nghĩa tiếng Việt trong ngoặc, viết chữ Hán (hoặc pinyin không dấu) vào chỗ trống.</div>`;
+  WRITE_WORDS.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span> (${it.vi})
+      <input type="text" class="text-input" placeholder="Gõ chữ Hán hoặc pinyin..." oninput="ANSWERS.writeWords[${i}]=this.value">
+    </div>`;
+  });
+
+  el.innerHTML = html;
+}
+function pickTile(qi, ti, btn){
+  btn.disabled = true;
+  const tile = document.createElement('button');
+  tile.className = 'tile';
+  tile.textContent = btn.textContent;
+  tile.onclick = ()=>{
+    ANSWERS.writeOrder[qi] = ANSWERS.writeOrder[qi].filter(x=>x!==tile);
+    tile.remove(); btn.disabled = false;
+    syncOrderAnswer(qi);
+  };
+  document.getElementById('ans-'+qi).appendChild(tile);
+  ANSWERS.writeOrder[qi].push(tile);
+  syncOrderAnswer(qi);
+}
+function syncOrderAnswer(qi){
+  ANSWERS.writeOrder[qi] = Array.from(document.getElementById('ans-'+qi).children);
+}
+
+/* ============================================================
+   DỊCH
+   ============================================================ */
+function renderTranslate(){
+  const el = document.getElementById('translate-body');
+  let html = '';
+
+  html += `<div class="subhead">🎤 A · PHIÊN DỊCH — Dịch xuôi <span class="pts">nghe tiếng Trung → NÓI tiếng Việt, 10 câu × 0,5đ</span></div>
+  <div class="hint">Đề bài chỉ có audio, không hiển thị chữ. Bấm 🔊 nghe câu tiếng Trung (nghe lại được), rồi bấm 🎙️ và nói bản dịch tiếng Việt.</div>`;
+  TRANS_A.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <button class="audio-btn" onclick="speak('${escJs(it.hz)}')">🔊 Nghe câu tiếng Trung</button>
+      <div class="mic-row">
+        ${SR ? `<button class="mic-btn" onclick="recordTransA(${i},this)">🎙</button>` : `<span style="font-size:.8rem;color:#8a8378;">Không hỗ trợ ghi âm.</span>`}
+        <div class="transcript-box" id="transA-tx-${i}">Chưa dịch</div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">🎤 B · PHIÊN DỊCH — Dịch ngược <span class="pts">nghe tiếng Việt → NÓI tiếng Trung, 10 câu × 0,5đ</span></div>
+  <div class="hint">Đề bài chỉ có audio. Bấm 🔊 nghe câu tiếng Việt, rồi bấm 🎙️ và nói câu tiếng Trung.</div>`;
+  TRANS_B.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span>
+      <button class="audio-btn" onclick="speakVi('${escJs(it.vi)}')">🔊 Nghe câu tiếng Việt</button>
+      <div class="mic-row">
+        ${SR ? `<button class="mic-btn" onclick="recordTransB(${i},this)">🎙</button>` : `<span style="font-size:.8rem;color:#8a8378;">Không hỗ trợ ghi âm.</span>`}
+        <div class="transcript-box" id="transB-tx-${i}">Chưa dịch</div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="subhead">⌨️ C · BIÊN DỊCH — Dịch ngược <span class="pts">Việt → Trung (gõ), 10 câu × 0,5đ</span></div>`;
+  TRANS_C.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span> ${it.vi}
+      <input type="text" class="text-input" placeholder="Gõ câu tiếng Trung (chữ Hán hoặc pinyin)..." oninput="ANSWERS.transC[${i}]=this.value">
+    </div>`;
+  });
+
+  html += `<div class="subhead">⌨️ D · BIÊN DỊCH — Dịch xuôi <span class="pts">Trung → Việt (gõ), 10 câu × 0,5đ</span></div>`;
+  TRANS_D.forEach((it,i)=>{
+    html += `<div class="qblock">
+      <span class="qnum">${i+1}</span> <span class="qhz">${it.hz}</span>
+      <input type="text" class="text-input" placeholder="Gõ bản dịch tiếng Việt..." oninput="ANSWERS.transD[${i}]=this.value">
+    </div>`;
+  });
+
+  el.innerHTML = html;
+}
+function recordTransA(i, btn){
+  const rec = new SR(); rec.lang='vi-VN'; rec.interimResults=false;
+  btn.classList.add('listening');
+  rec.onresult = e=>{
+    const said = e.results[0][0].transcript;
+    ANSWERS.transA[i] = said;
+    document.getElementById('transA-tx-'+i).textContent = '"'+said+'"';
+    btn.classList.remove('listening');
+  };
+  rec.onerror = ()=>{ btn.classList.remove('listening'); };
+  rec.onend = ()=>{ btn.classList.remove('listening'); };
+  rec.start();
+}
+function recordTransB(i, btn){
+  const rec = new SR(); rec.lang='zh-CN'; rec.interimResults=false;
+  btn.classList.add('listening');
+  rec.onresult = e=>{
+    const said = e.results[0][0].transcript;
+    ANSWERS.transB[i] = said;
+    document.getElementById('transB-tx-'+i).textContent = '"'+said+'"';
+    btn.classList.remove('listening');
+  };
+  rec.onerror = ()=>{ btn.classList.remove('listening'); };
+  rec.onend = ()=>{ btn.classList.remove('listening'); };
+  rec.start();
+}
+
+/* ============================================================
+   CHẤM ĐIỂM TỰ ĐỘNG
+   ============================================================ */
+function scoreListen(){
+  let s = 0;
+  LISTEN_TF.forEach((it,i)=>{ if(ANSWERS.listenTF[i]===it.correct) s += 1; });
+  LISTEN_MCQ.forEach((it,i)=>{ if(ANSWERS.listenMCQ[i]===it.answer) s += 1; });
+  LISTEN_FILL.forEach((p,pi)=>{
+    p.blanks.forEach((b,bi)=>{ if(norm(ANSWERS.listenFill[pi][bi])===norm(b)) s += 1; });
+  });
+  return Math.round(s*100)/100;
+}
+function scoreRead(){
+  let s = 0, gi=0;
+  READ_PASSAGES.forEach(p=>p.questions.forEach(q=>{ if(ANSWERS.readMCQ[gi]===q.answer) s+=2; gi++; }));
+  return s;
+}
+function scoreWrite(){
+  let s = 0;
+  WRITE_ORDER.forEach((it,i)=>{
+    const chosen = ANSWERS.writeOrder[i].map(t=>t.textContent).join('');
+    if(chosen === it.correct.join('')) s += 1;
+  });
+  WRITE_FILL.forEach((it,i)=>{ if(ANSWERS.writeFill[i]===it.answer) s += 1; });
+  WRITE_WORDS.forEach((it,i)=>{
+    const v = ANSWERS.writeWords[i];
+    if(v === it.answer || (norm(v) && norm(v)===norm(it.pinyin))) s += 1;
+  });
+  return Math.round(s*100)/100;
+}
+
+function renderSubmit(){
+  const el = document.getElementById('submit-body');
+  el.innerHTML = `
+    <div class="card">
+      <button class="btn btn-primary btn-lg" onclick="finishExam()">✅ NỘP BÀI</button>
+      <p style="font-size:.8rem;color:#8a8378;margin-top:14px;">Sau khi nộp, điểm 3 phần tự động (Nghe, Đọc, Viết) sẽ hiện ngay bên dưới. Bấm "Tải file kết quả" để xuất toàn bộ bài làm (kể cả phần Nói/Dịch) gửi giáo viên chấm.</p>
+    </div>
+    <div id="submit-result"></div>
+  `;
+}
+
+function rankOf(total){
+  if(total>=90) return '🏆 Xuất sắc';
+  if(total>=80) return '🥇 Hoàn thành tốt';
+  if(total>50) return '✅ Hoàn thành';
+  return 'Ôn tập lại và kiểm tra lại';
+}
+
+function finishExam(){
+  const l = scoreListen(), r = scoreRead(), w = scoreWrite();
+  const autoTotal = Math.round((l+r+w)*100)/100;
+  const box = document.getElementById('submit-result');
+  box.innerHTML = `
+    <div class="card score-hero">
+      <div style="font-size:.76rem;font-weight:800;letter-spacing:.14em;color:#9a9284;">ĐIỂM TỰ ĐỘNG (60đ)</div>
+      <div class="num">${autoTotal}</div>
+      <div style="color:#6b6459;font-size:.86rem;">+ tối đa 40đ do giáo viên chấm phần Nói &amp; Dịch → tổng tối đa 100đ</div>
+      <div class="breakdown">
+        <div><b>${l}/20</b><span>🎧 Nghe</span></div>
+        <div><b>${r}/20</b><span>📖 Đọc</span></div>
+        <div><b>${w}/20</b><span>✍️ Viết</span></div>
+      </div>
+      <table class="score-table rank-table" style="max-width:360px;margin:10px auto 0;">
+        <tr><td>90–100</td><td>🏆 Xuất sắc</td></tr>
+        <tr><td>80–89</td><td>🥇 Hoàn thành tốt</td></tr>
+        <tr><td>Trên 50–79</td><td>✅ Hoàn thành</td></tr>
+        <tr><td>≤50</td><td>Ôn tập lại</td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:.82rem;color:#8a8378;">(Xếp loại cuối cùng phụ thuộc điểm Nói + Dịch do giáo viên chấm — xem trong file kết quả.)</p>
+      <button class="btn btn-primary btn-lg" style="margin-top:18px;" onclick="downloadResults(${l},${r},${w})">⬇️ Tải file kết quả cho giáo viên</button>
+    </div>
+  `;
+  box.scrollIntoView({behavior:'smooth'});
+}
+
+function downloadResults(l,r,w){
+  const name = document.getElementById('stu-name').value.trim();
+  const cls = document.getElementById('stu-class').value.trim();
+  const lines = [];
+  lines.push('BÀI KIỂM TRA 5 KỸ NĂNG — BÀI 9 PHẦN 1: 买东西 (MUA QUẦN ÁO)');
+  lines.push('Integrated Chinese, Level 1 Part 1 — Dialogue I: Shopping for Clothes');
+  lines.push('Họ tên: '+name);
+  lines.push('Lớp/Mã học viên: '+cls);
+  lines.push('Ngày nộp: '+new Date().toLocaleString('vi-VN'));
+  lines.push('');
+  lines.push('=== ĐIỂM TỰ ĐỘNG (60đ) ===');
+  lines.push('Nghe: '+l+'/20');
+  lines.push('Đọc: '+r+'/20');
+  lines.push('Viết: '+w+'/20');
+  lines.push('Tổng tự động: '+(Math.round((l+r+w)*100)/100)+'/60');
+  lines.push('');
+  lines.push('=== PHẦN NÓI (giáo viên chấm, 20đ) ===');
+  lines.push('-- Phần 1: Nghe và nhắc lại --');
+  SPEAK_REPEAT.forEach((hz,i)=>lines.push((i+1)+'. Mẫu: '+hz+'  |  Học viên nói: '+(ANSWERS.speakRepeat[i]||'(chưa ghi âm)')));
+  lines.push('-- Phần 2: Nghe và trả lời --');
+  SPEAK_ANSWER.forEach((hz,i)=>lines.push((i+1)+'. Câu hỏi: '+hz+'  |  Học viên trả lời: '+(ANSWERS.speakAnswer[i]||'(chưa trả lời)')));
+  lines.push('-- Phần 3: Trình bày --');
+  lines.push('Chủ đề chọn: '+(ANSWERS.speakTopicChoice>=0 ? SPEAK_TOPICS[ANSWERS.speakTopicChoice] : '(chưa chọn)'));
+  lines.push('Nội dung trình bày: '+(ANSWERS.speakTopicTranscript||'(chưa ghi âm)'));
+  lines.push('');
+  lines.push('=== PHẦN DỊCH (giáo viên chấm, 20đ) ===');
+  lines.push('-- A. Phiên dịch xuôi (nghe Trung -> nói Việt) --');
+  TRANS_A.forEach((it,i)=>lines.push((i+1)+'. Đề: '+it.hz+'  |  Đáp án tham khảo: '+it.vi+'  |  Học viên nói: '+(ANSWERS.transA[i]||'(chưa dịch)')));
+  lines.push('-- B. Phiên dịch ngược (nghe Việt -> nói Trung) --');
+  TRANS_B.forEach((it,i)=>lines.push((i+1)+'. Đề: '+it.vi+'  |  Đáp án tham khảo: '+it.hz+'  |  Học viên nói: '+(ANSWERS.transB[i]||'(chưa dịch)')));
+  lines.push('-- C. Biên dịch: Việt -> Trung (gõ) --');
+  TRANS_C.forEach((it,i)=>lines.push((i+1)+'. Đề: '+it.vi+'  |  Đáp án tham khảo: '+it.hzRef+'  |  Học viên gõ: '+(ANSWERS.transC[i]||'(bỏ trống)')));
+  lines.push('-- D. Biên dịch: Trung -> Việt (gõ) --');
+  TRANS_D.forEach((it,i)=>lines.push((i+1)+'. Đề: '+it.hz+'  |  Đáp án tham khảo: '+it.viRef+'  |  Học viên gõ: '+(ANSWERS.transD[i]||'(bỏ trống)')));
+  lines.push('');
+  lines.push('=== CHI TIẾT PHẦN NGHE ===');
+  LISTEN_TF.forEach((it,i)=>lines.push('Đúng/Sai '+(i+1)+': '+it.hz+' -> "'+it.statement+'" | Đáp án: '+(it.correct?'Đúng':'Sai')+' | Học viên chọn: '+(ANSWERS.listenTF[i]===null?'(chưa chọn)':(ANSWERS.listenTF[i]?'Đúng':'Sai'))));
+  LISTEN_MCQ.forEach((it,i)=>lines.push('Trắc nghiệm '+(i+1)+': '+it.hz+' | Đáp án: '+it.options[it.answer]+' | Học viên chọn: '+(ANSWERS.listenMCQ[i]===null?'(chưa chọn)':it.options[ANSWERS.listenMCQ[i]])));
+  lines.push('');
+  lines.push('=== CHI TIẾT PHẦN VIẾT ===');
+  WRITE_WORDS.forEach((it,i)=>lines.push('Viết từ '+(i+1)+' ('+it.vi+'): đáp án '+it.answer+' | học viên gõ: '+(ANSWERS.writeWords[i]||'(bỏ trống)')));
+
+  const blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ketqua_'+(name||'hocvien').replace(/\s+/g,'_')+'.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+</script>
+</body>
+</html>
